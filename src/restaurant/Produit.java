@@ -27,7 +27,7 @@ public class Produit {
         this.nom = nom;
     }
 
-    public double getQuantite() {
+    public int getQuantite() {
         return quantite;
     }
 

@@ -16,4 +16,11 @@ public class Client {
         return note.addProduit(p);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public Note getNote() {
+        return note;
+    }
 }

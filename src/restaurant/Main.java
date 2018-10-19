@@ -10,10 +10,12 @@ public class Main {
     Restaurant resto = new Restaurant();
     String choice;
 
+
     System.out.println("Que voulez-vous faire ? ('o' pour voir les operations disponibles)");
+        String nom;
+        int idClient;
 
-
-    do{
+        do{
         choice = scan.next();
         switch (choice){
             case "o" :
@@ -25,7 +27,7 @@ public class Main {
             case "a" :
                 System.out.println("Ajout d'un produit, veuillez rentrer le prix, le nom, et la quantite");
                 Double prix = Double.parseDouble(scan.next());
-                String nom = scan.next();
+                nom = scan.next();
                 int quantite = Integer.parseInt(scan.next());
 
                 if(prix>0 && nom != null && quantite>0)
@@ -35,13 +37,26 @@ public class Main {
 
                 break; //ajout produit a la vente
             case "n":
-                System.out.println(resto.addClient());
+                resto.addClient();
+                System.out.printf("Vous avez cree un nouveau client, son id est : %d\n", resto.getClientByIndex( resto.getClients().size() - 1).getId());
                 break; //ouvrir note client
-            case "e" :
+            case "e" : //achat produit
+                System.out.println("Entrez le numero du client ");
+                idClient = Integer.parseInt(scan.next());
+                System.out.println("Entrez le nom du produit desire");
+                nom = scan.next();
+                resto.getClientById(idClient).achatProduit(resto.getProductByName(nom)) ;
+                resto.boughtProduct(nom);
 
-                break; //enregistrer vente d un produit sur note
-            case "f" : break; //cloturer la note
-            case "c" : break; //afficher donnee compta
+                break;
+            case "f" :  //cloturer la note
+                System.out.println("Entrez le numero du client dont vous voulez cloturer la note");
+                idClient = Integer.parseInt(scan.next());
+                System.out.println((resto.removeClient(idClient)));
+                break;
+            case "c" :
+                System.out.println(resto.getCompta());
+                break; //afficher donnee compta
         }
     }while( !"q".equals(choice));
 

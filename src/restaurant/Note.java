@@ -12,4 +12,8 @@ public class Note {
     public boolean addProduit(Produit p) {
         return this.listeDesProduits.add(p);
     }
+
+    public ArrayList<Produit> getListeDesProduits() {
+        return listeDesProduits;
+    }
 }
