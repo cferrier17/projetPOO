@@ -1,10 +1,13 @@
 package restaurant;
 import java.util.ArrayList;
+import logger.Logger;
+import logger.LoggerFactory;
 
 public class Restaurant {
     private ArrayList<Produit> stock;
     private ArrayList<Client> clients;
     private Comptabilite compta ;
+    private final Logger log = LoggerFactory.getLogger("player");
 
     public Restaurant(){
         this.stock = new ArrayList<Produit>();
@@ -74,15 +77,19 @@ public class Restaurant {
         double totalHT = 0;
 
         for(Produit P: this.getClientById(id).getNote().getListeDesProduits() ){
-            System.out.printf(P.getNom()+" - prix HT : "+P.getPrix()+"€ -- TVA : %.3f€\n", P.getPrix()/10);
-            this.compta.moneyIn(P.getPrix());
+            this.log.info("OUTPUT", "" + P.getNom()+" - prix HT : "+P.getPrix()+"€ -- TVA :" + P.getPrix()/10);
             totalHT += P.getPrix();
         }
-        System.out.printf("Total HT : "+totalHT+"€ -- Total TTC : %.2f", totalHT/10 + totalHT);
+        //System.out.printf("Total HT : "+totalHT+"€ -- Total TTC : %.2f", totalHT/10 + totalHT);
+        this.log.info("OUTPUT", "Total HT : "+totalHT+"€ -- Total TTC : "+ (totalHT/10 + totalHT));
         return this.clients.remove( this.getClientById(id) );
     }
 
     public Comptabilite getCompta() {
         return compta;
+    }
+
+    public Logger getLogger(){
+        return this.log;
     }
 }

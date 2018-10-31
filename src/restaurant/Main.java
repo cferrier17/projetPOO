@@ -1,7 +1,7 @@
 package restaurant;
 import java.util.Scanner;
 
-public class Main {
+public class Main {     //TODO : implemanter le logger dans le reste du code
 
     public static void main(String[] args) {
 	// write your code here
@@ -19,13 +19,13 @@ public class Main {
         choice = scan.next();
         switch (choice){
             case "o" :
-                System.out.println("Opérations disponibles :\n-Afficher la liste des produits disponibles :'p'\n-Ajouter un produit a la vente : 'a'\n-Ouvrir la note d'un client :'n'\n-Enregistrer la vente d un produit sur une note :'e'\n-Cloturer une note :'f'\n-Afficher les donnees comptables :'c'\n-Quitter :q");
+                resto.getLogger().info("OUTPUT", "Opérations disponibles :\n-Afficher la liste des produits disponibles :'p'\n-Ajouter un produit a la vente : 'a'\n-Ouvrir la note d'un client :'n'\n-Enregistrer la vente d un produit sur une note :'e'\n-Cloturer une note :'f'\n-Afficher les donnees comptables :'c'\n-Quitter :q");
                 break; //affiche operations dispo
             case "p" :
-                System.out.println(resto);;
+                resto.getLogger().info("OUTPUT", resto.toString());
                 break; //affiche produits dispo
             case "a" :
-                System.out.println("Ajout d'un produit, veuillez rentrer le prix, le nom, et la quantite");
+                resto.getLogger().info("OUTPUT", "Ajout d'un produit, veuillez rentrer le prix, le nom, et la quantite");
                 Double prix = Double.parseDouble(scan.next());
                 nom = scan.next();
                 int quantite = Integer.parseInt(scan.next());
