@@ -1,7 +1,7 @@
 package restaurant;
 import java.util.Scanner;
 
-public class Main {     //TODO : implemanter le logger dans le reste du code
+public class Main {
 
     public static void main(String[] args) {
 	// write your code here
@@ -11,7 +11,7 @@ public class Main {     //TODO : implemanter le logger dans le reste du code
     String choice;
 
 
-    System.out.println("Que voulez-vous faire ? ('o' pour voir les operations disponibles)");
+        resto.getLogger().info("OUTPUT","Que voulez-vous faire ? ('o' pour voir les operations disponibles)");
         String nom;
         int idClient;
 
@@ -30,36 +30,47 @@ public class Main {     //TODO : implemanter le logger dans le reste du code
                 nom = scan.next();
                 int quantite = Integer.parseInt(scan.next());
 
-                if(prix>0 && nom != null && quantite>0)
-                    System.out.println(resto.addProduct(new Produit(prix, nom, quantite)));
+
+                if(prix>0 && nom != null && quantite>0){ //TODO : a verifier
+                }
+                    //System.out.println(resto.addProduct(new Produit(prix, nom, quantite)));
                 else
-                    System.out.println("Erreur dans les donnees rentrees");
+                    resto.getLogger().info("OUTPUT","Erreur dans les donnees rentrees");
 
                 break; //ajout produit a la vente
             case "n":
                 resto.addClient();
-                System.out.printf("Vous avez cree un nouveau client, son id est : %d\n", resto.getClientByIndex( resto.getClients().size() - 1).getId());
+                resto.getLogger().info("OUTPUT","Vous avez cree un nouveau client, son id est : "+ resto.getClientByIndex( resto.getClients().size() - 1).getId());
                 break; //ouvrir note client
             case "e" : //achat produit
-                System.out.println("Entrez le numero du client ");
+                resto.getLogger().info("OUTPUT","Entrez le numero du client ");
                 idClient = Integer.parseInt(scan.next());
-                System.out.println("Entrez le nom du produit desire");
+                resto.getLogger().info("OUTPUT","Entrez le nom du produit desire");
                 nom = scan.next();
-                resto.getClientById(idClient).achatProduit(resto.getProductByName(nom)) ;
+                if(!resto.getClientById(idClient).achatProduit(resto.getProductByName(nom)))
+                    resto.getLogger().info("OUTPUT","Le produit demande n est plus disponible a la vente");
                 resto.boughtProduct(nom);
 
                 break;
-            case "f" :  //cloturer la note
-                System.out.println("Entrez le numero du client dont vous voulez cloturer la note");
+            case "f" :  //cloturer la note  //TODO : offrir remise 10%
+                resto.getLogger().info("OUTPUT","Entrez le numero du client dont vous voulez cloturer la note");
                 idClient = Integer.parseInt(scan.next());
-                System.out.println((resto.removeClient(idClient)));
+
+                resto.getLogger().info("OUTPUT", "Voulez vous offrir une reduction de 10% sur la note du client ? (O/N)");
+                choice = scan.next();
+
+                if("o".equals(choice))
+
+
+                resto.removeClient(idClient);
+
                 break;
             case "c" :
-                System.out.println(resto.getCompta());
+                resto.getLogger().info("OUTPUT",""+resto.getCompta());
                 break; //afficher donnee compta
         }
     }while( !"q".equals(choice));
 
-    System.out.println("Fin du programme.");
+    resto.getLogger().info("OUTPUT", "Fin du programme.");
     }
 }

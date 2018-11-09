@@ -14,7 +14,7 @@ public class Restaurant {
         this.clients = new ArrayList<Client>();
         this.compta = new Comptabilite();
         this.stock.add(new Produit(7, "Bagel", 20) );
-        this.stock.add(new Produit(6, "Burger", 10) );
+        this.stock.add(new Produit(6, "Burger", 1) );
         this.stock.add(new Produit(4.50, "Smoothie", 30) );
         this.stock.add(new Produit(2, "Cafe", -1) );
     }
@@ -33,10 +33,12 @@ public class Restaurant {
         String ret="";
 
         for (Produit P: stock) {
-            if(P.getQuantite() != -1)
-                ret+="Nom : " + P.getNom() + " -- Quantite restante : " + P.getQuantite()+"\n";
-            else
-                ret+="Nom :  "+ P.getNom() +" -- Quantite illimitee\n";
+            if(P.getQuantite() != 0){ //Si il reste du produit
+                if(P.getQuantite() != -1)
+                    ret+="Nom : " + P.getNom() + " -- Quantite restante : " + P.getQuantite()+"\n";
+                else    //Si cafe
+                    ret+="Nom :  "+ P.getNom() +" -- Quantite illimitee\n";
+                }
         }
 
         return ret;

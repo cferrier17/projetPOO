@@ -1,5 +1,4 @@
 package restaurant;
-import java.util.ArrayList;
 
 public class Client {
     private int id;
@@ -13,7 +12,10 @@ public class Client {
     }
 
     public boolean achatProduit(Produit p){
-        return note.addProduit(p);
+        if( p.getQuantite() != 0)
+            return note.addProduit(p);
+        else
+            return false;
     }
 
     public int getId() {
@@ -23,4 +25,6 @@ public class Client {
     public Note getNote() {
         return note;
     }
+
+    
 }
