@@ -14,7 +14,7 @@ public class Restaurant {
         this.clients = new ArrayList<Client>();
         this.compta = new Comptabilite();
         this.stock.add(new Produit(7, "Bagel", 20) );
-        this.stock.add(new Produit(6, "Burger", 1) );
+        this.stock.add(new Produit(6, "Burger", 10) );
         this.stock.add(new Produit(4.50, "Smoothie", 30) );
         this.stock.add(new Produit(2, "Cafe", -1) );
     }
@@ -75,7 +75,7 @@ public class Restaurant {
         this.getProductByName(name).setQuantite( this.getProductByName(name).getQuantite()-1 );
     }
 
-    public boolean removeClient(int id){
+    public boolean removeClient(int id, double reduction){
         double totalHT = 0;
 
         for(Produit P: this.getClientById(id).getNote().getListeDesProduits() ){
@@ -83,7 +83,8 @@ public class Restaurant {
             totalHT += P.getPrix();
         }
         //System.out.printf("Total HT : "+totalHT+"€ -- Total TTC : %.2f", totalHT/10 + totalHT);
-        this.log.info("OUTPUT", "Total HT : "+totalHT+"€ -- Total TTC : "+ (totalHT/10 + totalHT));
+        double totalTTCSansReduc = (totalHT/10 + totalHT);
+        this.log.info("OUTPUT", "Total HT : "+totalHT * reduction +"€ -- Total TTC : "+ totalTTCSansReduc * reduction );
         return this.clients.remove( this.getClientById(id) );
     }
 

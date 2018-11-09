@@ -10,6 +10,7 @@ public class Main {
     Restaurant resto = new Restaurant();
     String choice;
 
+    double reduction;
 
         resto.getLogger().info("OUTPUT","Que voulez-vous faire ? ('o' pour voir les operations disponibles)");
         String nom;
@@ -52,17 +53,19 @@ public class Main {
                 resto.boughtProduct(nom);
 
                 break;
-            case "f" :  //cloturer la note  //TODO : offrir remise 10%
+            case "f" :  //cloturer la note
                 resto.getLogger().info("OUTPUT","Entrez le numero du client dont vous voulez cloturer la note");
                 idClient = Integer.parseInt(scan.next());
 
-                resto.getLogger().info("OUTPUT", "Voulez vous offrir une reduction de 10% sur la note du client ? (O/N)");
+                resto.getLogger().info("OUTPUT", "Voulez vous offrir une reduction de 10% sur la note du client ? (o/n)");
                 choice = scan.next();
 
-                if("o".equals(choice))
+                if("o".equals(choice)) //reduction appliquee
+                    reduction = 0.90;
+                else
+                    reduction = 1;
 
-
-                resto.removeClient(idClient);
+                resto.removeClient(idClient, reduction);
 
                 break;
             case "c" :

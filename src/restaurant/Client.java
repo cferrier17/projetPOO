@@ -26,5 +26,5 @@ public class Client {
         return note;
     }
 
-    
+
 }
