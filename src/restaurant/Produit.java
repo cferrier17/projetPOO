@@ -19,20 +19,16 @@ public class Produit {
         return nom;
     }
 
-    public void setPrix(int prix) {
-        this.prix = prix;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public int getQuantite() {
         return quantite;
     }
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+
+    public void addQuantite(int q){
+        this.quantite += q;
     }
 
 }
