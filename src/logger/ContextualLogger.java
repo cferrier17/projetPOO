@@ -4,11 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ContextualLogger implements Logger{
-    private String callerClass;
     private Logger delegateLogger;
 
-    public ContextualLogger(String className, Logger log) {
-        this.callerClass= className;
+    public ContextualLogger(Logger log) {
         this.delegateLogger= log;
     }
 
@@ -16,7 +14,7 @@ public class ContextualLogger implements Logger{
     public void info(String categorie, String message){
         SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss.SSS");
 
-        this.delegateLogger.info(categorie,DATE_FORMAT.format(new Date()) + " " + this.callerClass + " " + message);
+        this.delegateLogger.info(categorie,DATE_FORMAT.format(new Date()) + " "  + message);
     }
 
     @Override

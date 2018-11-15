@@ -32,19 +32,21 @@ public class CloturerNote implements Operation{
     private void cloturerNote(Restaurant resto){
         Scanner scan = new Scanner(System.in);
         resto.getLogger().info("OUTPUT","Entrez le numero du client dont vous voulez cloturer la note");
-        int idClient = Integer.parseInt(scan.next());;
-        double reduction;
+        String idClient = scan.next();
 
-        resto.getLogger().info("OUTPUT", "Voulez vous offrir une reduction de 10% sur la note du client ? (o/n)");
-        String choice = scan.next();
-        resto.getLogger().info("INPUT", choice);
-
-        if("o".equals(choice)) //reduction appliquee
-            reduction = 0.90;
+        if( estUnInt(idClient) && this.resto.estUnClient(Integer.parseInt(idClient))){
+            double reduction;
+            resto.getLogger().info("OUTPUT", "Voulez vous offrir une reduction de 10% sur la note du client ? (o/n)");
+            String choice = scan.next();
+            resto.getLogger().info("INPUT", choice);
+            if("o".equals(choice)) //reduction appliquee
+                reduction = 0.90;
+            else
+                reduction = 1;
+            removeClient(Integer.parseInt(idClient), reduction, resto);
+        }
         else
-            reduction = 1;
-
-        removeClient(idClient, reduction, resto);
+            resto.getLogger().error("OUTPUT", "Erreur dans l'id client renseigné");
     }
 
     public boolean removeClient(int id, double reduction, Restaurant resto){
@@ -57,5 +59,15 @@ public class CloturerNote implements Operation{
         double totalTTCSansReduc = (totalHT/10 + totalHT);
         resto.getLogger().info("OUTPUT", "Total HT : "+totalHT * reduction +"€ -- Total TTC : "+ totalTTCSansReduc * reduction );
         return resto.getClients().remove( resto.getClientById(id) );
+    }
+
+
+    public boolean estUnInt(String chaine){
+        try {
+            Integer.parseInt(chaine);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

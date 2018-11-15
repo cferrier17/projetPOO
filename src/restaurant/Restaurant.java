@@ -7,7 +7,7 @@ public class Restaurant {
     private ArrayList<Produit> stock;
     private ArrayList<Client> clients;
     private Comptabilite compta ;
-    private final Logger log = LoggerFactory.getLogger("player");
+    private final Logger log = LoggerFactory.getLogger("log.txt");
 
     public Restaurant(){
         this.stock = new ArrayList<Produit>();
@@ -23,35 +23,16 @@ public class Restaurant {
         return stock;
     }
 
-    //    public void addProduct(Produit P){
-//        boolean inStock = false;
-//        for(Produit p : this.stock){
-//            if( p.getNom().equals(P.getNom()))
-//                inStock = true;
-//        }
-//
-//        if(inStock)
-//            this.getProductByName(P.getNom()).addQuantite( P.getQuantite());
-//        else
-//            this.stock.add(P);
-//
-//    }
-
-//    public boolean addClient(){ //Ouvre la note d'un client & ajoute un client au restaurant
-//        Client c = new Client();
-//        return this.clients.add(c);
-//    }
-
     @Override
     public String toString(){
         String ret="";
 
         for (Produit P: stock) {
             if(P.getQuantite() != 0){ //Si il reste du produit
-                if(P.getQuantite() != -1)
-                    ret+="Nom : " + P.getNom() + " -- Quantite restante : " + P.getQuantite()+"\n";
-                else    //Si cafe
+                if(P.getQuantite() < 0) //Si cafe
                     ret+="Nom :  "+ P.getNom() +" -- Quantite illimitee\n";
+                else
+                    ret+="Nom : " + P.getNom() + " -- Quantite restante : " + P.getQuantite()+"\n";
                 }
         }
 
@@ -70,12 +51,17 @@ public class Restaurant {
         return null;
     }
 
-    public Client getClientByIndex(int index){
-        if(index > stock.size())
-            return null;
-        else
-            return clients.get(index);
+    public boolean estUnClient(int id){
+        boolean ret = false;
+
+        for(Client c:this.clients){
+            if(id == c.getId())
+                ret = true;
+        }
+
+        return ret;
     }
+
 
     public Produit getProductByName(String name){
         for(Produit P: stock){
@@ -89,18 +75,6 @@ public class Restaurant {
         this.getProductByName(name).setQuantite( this.getProductByName(name).getQuantite()-1 );
     }
 
-//    public boolean removeClient(int id, double reduction){
-//        double totalHT = 0;
-//
-//        for(Produit P: this.getClientById(id).getNote().getListeDesProduits() ){
-//            this.log.info("OUTPUT", "" + P.getNom()+" - prix HT : "+P.getPrix()+"€ -- TVA :" + P.getPrix()/10);
-//            totalHT += P.getPrix();
-//        }
-//        //System.out.printf("Total HT : "+totalHT+"€ -- Total TTC : %.2f", totalHT/10 + totalHT);
-//        double totalTTCSansReduc = (totalHT/10 + totalHT);
-//        this.log.info("OUTPUT", "Total HT : "+totalHT * reduction +"€ -- Total TTC : "+ totalTTCSansReduc * reduction );
-//        return this.clients.remove( this.getClientById(id) );
-//    }
 
     public Comptabilite getCompta() {
         return compta;

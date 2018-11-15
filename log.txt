@@ -1,0 +1,5 @@
+sINFO -- OUTPUT -- 2018-11-15 11:44:32.665 Que voulez-vous faire ? ('h') pour voir les operations disponibles)
+INFO -- INPUT -- 2018-11-15 11:44:35.014 e
+INFO -- OUTPUT -- 2018-11-15 11:44:35.014 Entrez le numero du client et le nom du produit désiré
+INFO -- INPUT -- 2018-11-15 11:44:36.672 2
+INFO -- INPUT -- 2018-11-15 11:44:38.797 Bagel

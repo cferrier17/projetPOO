@@ -11,7 +11,7 @@ public class LoggerFactory implements Logger {
 
 
     public static Logger getLogger(String name){
-        return new ConsoleLogger();
+        return new CompositeLogger( new ConsoleLogger(), new ContextualLogger( new FileLogger("././"+name)) );
     }
 }
 

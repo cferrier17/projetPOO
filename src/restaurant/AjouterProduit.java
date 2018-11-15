@@ -34,29 +34,58 @@ public class AjouterProduit implements Operation{
 
         resto.getLogger().info("OUTPUT", "Ajout d'un produit, veuillez rentrer le nom, le prix et la quantite");
         String nom = scan.next();
-        Double prix = Double.parseDouble(scan.next());
-        int quantite = Integer.parseInt(scan.next());
+        String prix = scan.next();
+        String quantite = scan.next();
 
-        if(prix>0 && nom != null && quantite>0){ //TODO : a verifier
-            addProduct(new Produit(prix, nom, quantite), resto);
-            resto.getLogger().info("INPUT", quantite + " "+nom+" ajoutés au prix de : " + prix+" €" );
+        if(estUnDouble(prix) && Double.parseDouble(prix)>0 &&  nom != null && estUnInt(quantite) && Integer.parseInt(quantite)>0){ //TODO : a verifier
+            if( addProduct(new Produit(Double.parseDouble(prix), nom, Integer.parseInt(quantite)), resto) )
+                resto.getLogger().info("OUTPUT", quantite + " "+nom+" ajoutés au prix de : " + prix+" €" );
+
         }
         else
-            resto.getLogger().info("OUTPUT","Erreur dans les donnees rentrees");
+            resto.getLogger().error("OUTPUT","Erreur dans les donnees rentrees");
     }
 
 
-    private void addProduct(Produit P, Restaurant resto){
+    private boolean addProduct(Produit P, Restaurant resto){
         boolean inStock = false;
+        Produit tmp = null;
         for(Produit p : resto.getStock()){
-            if( p.getNom().equals(P.getNom()))
+            if( p.getNom().equals(P.getNom())){
                 inStock = true;
+                tmp = p;
+            }
         }
 
-        if(inStock)
+        if(inStock && tmp.getPrix() == P.getPrix()){
             resto.getProductByName(P.getNom()).addQuantite( P.getQuantite());
-        else
-            resto.getStock().add(P);
+            return true;
+        }
+        else if(!inStock)
+            return resto.getStock().add(P);
+        else{
+            this.resto.getLogger().error("OUTPUT", "Le produit rentré a le même nom qu'un produit déjà existant, mais pas le même prix.");
+            return false;
+        }
+
+    }
+
+    public boolean estUnDouble(String chaine){
+        try {
+            Double.parseDouble(chaine);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public boolean estUnInt(String chaine){
+        try {
+            Integer.parseInt(chaine);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
 

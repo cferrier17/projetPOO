@@ -17,13 +17,17 @@ public class FileLogger implements Logger {
 
     public void info(String category, String message) {
         try {
-            Files.write(path, (message + "\n").getBytes(), APPEND, CREATE);
+            Files.write(path, ("INFO -- " +category+" -- "+message + "\n").getBytes(), APPEND, CREATE);
         } catch (IOException e) {
             throw new RuntimeException("Cannot write info message to file [" + path + "]", e);
         }
     }
 
     public void error(String category, String message){
-
+        try {
+            Files.write(path, ("ERROR -- " +category+" -- "+message + "\n").getBytes(), APPEND, CREATE);
+        } catch (IOException e) {
+            throw new RuntimeException("Cannot write info message to file [" + path + "]", e);
+        }
     }
 }
