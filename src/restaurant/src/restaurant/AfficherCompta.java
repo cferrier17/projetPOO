@@ -1,4 +1,5 @@
-package restaurant;
+package restaurant.src.restaurant;
+
 
 public class AfficherCompta implements Operation {
     private Restaurant resto;
@@ -9,7 +10,7 @@ public class AfficherCompta implements Operation {
 
     @Override
     public void execute() {
-        this.afficherCompta(resto);
+        resto.getLogger().info("OUTPUT",""+resto.getCompta());
     }
 
     @Override
@@ -27,7 +28,4 @@ public class AfficherCompta implements Operation {
         return "c";
     }
 
-    private void afficherCompta(Restaurant resto){
-        resto.getLogger().info("OUTPUT",""+resto.getCompta());
-    }
 }

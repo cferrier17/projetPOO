@@ -1,4 +1,5 @@
-package restaurant;
+package restaurant.src.restaurant;
+
 
 public class AfficherAide implements Operation {
     private ConteneurOperations co;
@@ -10,7 +11,10 @@ public class AfficherAide implements Operation {
 
     @Override
     public void execute() {
-        this.aide();
+        this.resto.getLogger().info("OUTPUT", "Voici les commandes disponibles :");
+        for (Operation o: this.co.getListe()) {
+            this.resto.getLogger().info("OUTPUT", "'" + o.getRaccourci() + "' : " + o.getDescription());
+        }
     }
 
     @Override
@@ -28,9 +32,5 @@ public class AfficherAide implements Operation {
         return "h";
     }
 
-    private void aide(){
-        for (Operation o: this.co.getListe()) {
-            this.resto.getLogger().info("OUTPUT","'" + o.getRaccourci() + "' : " + o.getDescription());
-        }
-    }
+
 }

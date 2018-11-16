@@ -1,4 +1,5 @@
-package restaurant;
+package restaurant.src.restaurant;
+
 
 import java.util.Scanner;
 
@@ -39,14 +40,14 @@ public class CloturerNote implements Operation{
             resto.getLogger().info("OUTPUT", "Voulez vous offrir une reduction de 10% sur la note du client ? (o/n)");
             String choice = scan.next();
             resto.getLogger().info("INPUT", choice);
-            if("o".equals(choice)) //reduction appliquee
+            if("o".equals(choice))
                 reduction = 0.90;
             else
                 reduction = 1;
             removeClient(Integer.parseInt(idClient), reduction, resto);
         }
         else
-            resto.getLogger().error("OUTPUT", "Erreur dans l'id client renseigné");
+            resto.getLogger().error("OUTPUT", "L'id client renseigné n'existe pas.");
     }
 
     public boolean removeClient(int id, double reduction, Restaurant resto){

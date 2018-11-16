@@ -1,4 +1,4 @@
-package restaurant;
+package restaurant.src.restaurant;
 
 public interface Operation {
     void execute();

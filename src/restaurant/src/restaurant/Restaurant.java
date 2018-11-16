@@ -1,7 +1,10 @@
-package restaurant;
+package restaurant.src.restaurant;
+
+import logger.src.logger.Logger;
+import logger.src.logger.LoggerFactory;
+
 import java.util.ArrayList;
-import logger.Logger;
-import logger.LoggerFactory;
+
 
 public class Restaurant {
     private ArrayList<Produit> stock;

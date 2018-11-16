@@ -1,4 +1,4 @@
-package logger;
+package logger.src.logger;
 
 public class LoggerFactory implements Logger {
     public void info(String category, String message){

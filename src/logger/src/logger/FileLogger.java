@@ -1,4 +1,4 @@
-package logger;
+package logger.src.logger;
 
 import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;

@@ -1,4 +1,4 @@
-package logger;
+package logger.src.logger;
 
 public class CompositeLogger implements Logger {
     private Logger firstLogger;

@@ -1,4 +1,5 @@
-package restaurant;
+package restaurant.src.restaurant;
+
 
 public class Comptabilite {
     private double rentreesArgent;

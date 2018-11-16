@@ -1,4 +1,4 @@
-package logger;
+package logger.src.logger;
 
 public interface Logger  {
     void info(String category, String message);

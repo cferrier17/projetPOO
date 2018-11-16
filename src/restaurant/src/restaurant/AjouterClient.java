@@ -1,4 +1,5 @@
-package restaurant;
+package restaurant.src.restaurant;
+
 
 public class AjouterClient implements Operation {
     private Restaurant resto;
@@ -9,7 +10,8 @@ public class AjouterClient implements Operation {
 
     @Override
     public void execute() {
-        this.ajouterClient(resto);
+        Client c = new Client();
+        resto.getLogger().info("OUTPUT","Vous avez cree un nouveau client, son id est : "+ c.getId());
     }
 
     @Override
@@ -27,9 +29,4 @@ public class AjouterClient implements Operation {
         return "n";
     }
 
-    private boolean ajouterClient(Restaurant resto){ //Ouvre la note d'un client & ajoute un client au restaurant
-        Client c = new Client();
-        resto.getLogger().info("OUTPUT","Vous avez cree un nouveau client, son id est : "+ c.getId());
-        return resto.getClients().add(c);
-    }
 }

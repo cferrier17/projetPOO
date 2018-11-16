@@ -1,4 +1,4 @@
-package logger;
+package logger.src.logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

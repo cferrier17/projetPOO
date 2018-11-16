@@ -1,4 +1,5 @@
-package restaurant;
+package restaurant.src.restaurant;
+
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public class ConteneurOperations {
         liste.add(new AjouterClient(restaurant));
         liste.add(new AfficherProduit(restaurant));
         liste.add(new AjouterProduit(restaurant));
-        liste.add(new AchatProduit(restaurant));
+        liste.add(new AcheterProduit(restaurant));
         liste.add(new CloturerNote(restaurant));
         liste.add(new AfficherCompta(restaurant));
         liste.add(new AfficherAide(restaurant, this));

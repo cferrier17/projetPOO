@@ -1,4 +1,5 @@
-package restaurant;
+package restaurant.src.restaurant;
+
 
 public class AfficherProduit implements Operation{
     private Restaurant resto;
@@ -9,7 +10,7 @@ public class AfficherProduit implements Operation{
 
     @Override
     public void execute() {
-        this.AfficherProduit(resto);
+        resto.getLogger().info("OUTPUT", "Liste des produits disponibles à la vente : \n"+resto.toString());
     }
 
     @Override
@@ -27,7 +28,4 @@ public class AfficherProduit implements Operation{
         return "p";
     }
 
-    private void AfficherProduit(Restaurant resto){
-        resto.getLogger().info("OUTPUT", resto.toString());
-    }
 }

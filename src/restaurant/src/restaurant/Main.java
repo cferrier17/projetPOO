@@ -1,5 +1,7 @@
-package restaurant;
+package restaurant.src.restaurant;
+
 import java.util.Scanner;
+
 
 public class Main {
 
