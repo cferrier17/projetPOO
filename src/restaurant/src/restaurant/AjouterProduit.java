@@ -48,7 +48,7 @@ public class AjouterProduit implements Operation{
     }
 
 
-    private boolean addProduct(Produit P, Restaurant resto){
+    public boolean addProduct(Produit P, Restaurant resto){
         boolean inStock = false;
         Produit tmp = null;
         for(Produit p : resto.getStock()){
@@ -57,7 +57,6 @@ public class AjouterProduit implements Operation{
                 tmp = p;
             }
         }
-
         if(inStock && tmp.getPrix() == P.getPrix()){
             resto.getProductByName(P.getNom()).addQuantite( P.getQuantite());
             return true;
@@ -68,7 +67,6 @@ public class AjouterProduit implements Operation{
             this.resto.getLogger().error("OUTPUT", "Le produit rentré a le même nom qu'un produit déjà existant, mais pas le même prix.");
             return false;
         }
-
     }
 
     public boolean estUnDouble(String chaine){

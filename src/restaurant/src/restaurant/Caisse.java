@@ -3,7 +3,7 @@ package restaurant.src.restaurant;
 import java.util.Scanner;
 
 
-public class Main {
+public class Caisse {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
